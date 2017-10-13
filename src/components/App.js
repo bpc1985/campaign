@@ -1,12 +1,12 @@
 /* eslint-disable import/no-named-as-default */
-import React from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import { Switch, Route } from 'react-router-dom';
 import HomePage from './HomePage';
 import AboutPage from './AboutPage';
 import NotFoundPage from './NotFoundPage';
 
-class App extends React.Component {
+class App extends Component {
   render() {
     return (
       <div>
