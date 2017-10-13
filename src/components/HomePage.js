@@ -1,16 +1,16 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Header from './Header';
+import Game from './Game';
+import ContactForm from './ContactForm';
+import Footer from './Footer';
 
 const HomePage = () => {
   return (
     <div>
-      <h1>My Campaign</h1>
-
-      <h2>Get Started</h2>
-      <ol>
-        <li>Review the <Link to="/fuel-savings">demo app</Link></li>
-        <li>Remove the demo and start coding: npm run remove-demo</li>
-      </ol>
+      <Header />
+      <Game />
+      <ContactForm />
+      <Footer />
     </div>
   );
 };
