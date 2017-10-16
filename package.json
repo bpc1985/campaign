@@ -51,10 +51,12 @@
     "babel-eslint": "7.2.3",
     "babel-jest": "20.0.3",
     "babel-loader": "7.1.1",
+    "babel-plugin-transform-class-properties": "6.24.1",
     "babel-plugin-transform-react-constant-elements": "6.23.0",
     "babel-plugin-transform-react-remove-prop-types": "0.4.6",
     "babel-polyfill": "6.23.0",
     "babel-preset-env": "1.6.0",
+    "babel-preset-es2015": "6.24.1",
     "babel-preset-react": "6.24.1",
     "babel-preset-react-hmre": "1.1.1",
     "babel-preset-stage-1": "6.24.1",
@@ -70,6 +72,7 @@
     "eslint-watch": "3.1.2",
     "extract-text-webpack-plugin": "3.0.0-rc.2",
     "file-loader": "0.11.2",
+    "firebase": "4.5.2",
     "history": "4.6.0",
     "html-webpack-plugin": "2.29.0",
     "identity-obj-proxy": "3.0.0",
@@ -85,6 +88,7 @@
     "prop-types": "15.5.10",
     "react-hot-loader": "3.0.0-beta.6",
     "react-test-renderer": "15.5.4",
+    "react-toastify": "^2.1.2",
     "redux-immutable-state-invariant": "2.0.0",
     "replace": "0.3.0",
     "rimraf": "2.6.1",
@@ -128,6 +132,11 @@
         "presets": [
           "env",
           "react-hmre"
+        ],
+        "plugins": [
+          "transform-react-constant-elements",
+          "transform-react-remove-prop-types",
+          "transform-class-properties"
         ]
       },
       "production": {
@@ -147,7 +156,8 @@
         ],
         "plugins": [
           "transform-react-constant-elements",
-          "transform-react-remove-prop-types"
+          "transform-react-remove-prop-types",
+          "transform-class-properties"
         ]
       },
       "test": {
