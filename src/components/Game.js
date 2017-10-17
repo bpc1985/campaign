@@ -1,4 +1,5 @@
 import React, {Component}from 'react';
+import PropTypes from 'prop-types';
 import $ from 'jquery';
 
 /*
@@ -11,6 +12,14 @@ If = 1 then he's probably not easy to make a customer
 // let service;
 
 class Game extends Component {
+  static propTypes = {
+    checkToShowContactForm: PropTypes.func
+  }
+
+  constructor() {
+    super();
+  }
+
   componentDidMount() {
     /*
     $('#btnClick1, #btnClick2, #btnClick3').click(() => {
@@ -76,6 +85,7 @@ class Game extends Component {
           "background-color": "#1b998b"
         });
       } else if ($('#popup2').css('display') != 'none') {
+        this.props.checkToShowContactForm();
         $('#form').fadeIn(1000).show();
         $('html, body').animate({
           scrollTop: $("#form").offset().top

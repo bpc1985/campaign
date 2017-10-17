@@ -22,9 +22,6 @@ const ThanksPage = () => {
                   </p>
                 </div>
               </div>
-              <div className="logo-row logo-row-thankyou">
-                <p><img src="images/tietoleppa_logo.png" className="main-logo" alt="tietoleppä logo" /></p>
-              </div>
           </div>
         </div>
     </header>
