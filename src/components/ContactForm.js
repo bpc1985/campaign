@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
+import { withRouter } from 'react-router';
 import firebase from '../firebase';
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.min.css';
 
 const initialState = {
   name: '',
@@ -10,18 +10,18 @@ const initialState = {
 };
 
 class ContactForm extends Component {
+  static propTypes = {
+    history: PropTypes.object.isRequired
+  }
+
   constructor() {
     super();
     this.state = initialState;
   }
 
   clearContactForm = () => {
-    this.setState(initialState);    
-    toast.info("We have received your contact information", {
-      position: toast.POSITION.TOP_RIGHT,
-      className: 'dark-toast',
-      progressClassName: 'transparent-progress'
-    });
+    this.setState(initialState);
+    this.props.history.push('/thankyou');
   }
 
   handleChange = (e) => {
@@ -90,4 +90,4 @@ class ContactForm extends Component {
   }
 }
 
-export default ContactForm;
+export default withRouter(ContactForm);

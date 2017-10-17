@@ -310,3 +310,30 @@ footer img{
   width:120px;
 }
 /*** Footer ends ***/
+
+/*** Thank you styles ***/
+.logo-row-thankyou{
+  padding-top:0;
+  position: absolute;
+  bottom:40px;
+  left:0;
+  right:0;
+  text-align: center;
+}
+.logo-link img{
+  width:40px;
+  margin-right:10px;
+}
+.logo-link img + b{
+  line-height: 40px;
+}
+.white {
+  color:#fff;
+}
+
+@media screen and (max-width:660px){
+  .thankyou-content h1{
+    font-size:35px;
+  }
+}
+/*** Thank you styles end ***/
