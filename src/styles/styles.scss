@@ -337,3 +337,112 @@ footer img{
   }
 }
 /*** Thank you styles end ***/
+
+/** temp **/
+.game img{
+  width:66%;
+}
+
+.gameleft {
+	position: relative;
+	height: 26em;
+}
+
+.centergame {
+	position: relative;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+}
+
+.centergame p{
+	font-weight: bold;
+}
+
+.centergame h3{
+	color: #1b998b;
+}
+
+.gameright {
+	background-color: #1b998b;
+	color: white;
+	border-radius: 25px;
+	height: 26em;
+}
+.gamebtn {
+	margin-top: 15px;
+	margin-bottom: 15px;
+	background-color: #1fa799;
+	border-radius: 10px;
+	padding: 20px;
+	cursor: pointer;
+	}
+.gamebtn:hover {
+	background-color: #198377;
+}
+.gamebtn:active {
+	background-color: #23b0a1;
+	top: +2px;
+}
+.gbtn {
+	color: #198377;
+}
+
+.nextbtn{
+	display: none;
+	top: 75%;
+	position: relative;
+	padding: 30px 0px 0px 0px;
+}
+/** temp ends **/
+
+/** transformations **/
+#quest2 {
+	display: none;
+}
+
+#answers1{
+	padding: 40px;
+}
+
+#answers2{
+	display: none;
+	padding: 20px 40px 20px 40px;
+}
+
+#popup1{
+	display: none;
+	
+}
+
+#popup2{
+	display: none;
+}
+
+/** transformations ends **/
+/** optimizing for mobile phones '**/
+@media screen and (max-width: 480px){
+  .game {
+    padding-top: 0px;
+  }
+  .gameright {
+    border-radius: 0px;
+    height: 100%;
+  }
+  .gameleft {
+    height: 17em;
+  }
+  .game img {
+    width: 40%
+  }
+  .popupmb {
+    height: 23em;
+  }
+  .nextbtn{
+    top: 70%;
+  }
+  .c-l-mb{
+    top: 40%;
+  }
+}
+/*** Game ends ***/
