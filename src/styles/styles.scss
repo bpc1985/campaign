@@ -338,14 +338,42 @@ footer img{
 }
 /*** Thank you styles end ***/
 
-/** temp **/
-.game img{
-  width:66%;
-}
-
+/** Game starts from here **/
 .gameleft {
 	position: relative;
 	height: 26em;
+}
+.centertext {
+	position: relative;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%,-50%);
+}
+.centertext img{
+	width: 40%;
+}
+.centertext h3{
+	color: #1b998b;
+}
+.centertext p{
+	font-weight: bold;
+}
+
+.imgcomp{
+	width: 30%;
+}
+.imgcomp:hover{
+	width: 31%;
+}
+
+.imgleft {
+	position: absolute;
+	left: 5px;
+}
+
+.imgright {
+	position: absolute;
+	right: 5px;
 }
 
 .centergame {
@@ -353,6 +381,9 @@ footer img{
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%,-50%);
+}
+.centergame img{
+  width:66%;
 }
 
 .centergame p{
@@ -394,10 +425,12 @@ footer img{
 	position: relative;
 	padding: 30px 0px 0px 0px;
 }
-/** temp ends **/
 
 /** transformations **/
 #quest2 {
+	display: none;
+}
+#quest3 {
 	display: none;
 }
 
@@ -409,17 +442,23 @@ footer img{
 	display: none;
 	padding: 20px 40px 20px 40px;
 }
+#answers3{
+	display: none;
+}
 
 #popup1{
 	display: none;
-	
 }
 
 #popup2{
 	display: none;
 }
 
+#popup3{
+	display: none;
+}
 /** transformations ends **/
+
 /** optimizing for mobile phones '**/
 @media screen and (max-width: 480px){
   .game {
@@ -444,5 +483,10 @@ footer img{
   .c-l-mb{
     top: 40%;
   }
-}
+  .imgbetween {
+    position: relative;
+    top: 55%;
+  }
+  }
+/** optimizing for mobile phones ends**/
 /*** Game ends ***/
