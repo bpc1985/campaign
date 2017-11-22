@@ -8,6 +8,8 @@ import Root from './components/Root';
 
 import 'font-awesome/css/font-awesome.min.css';
 import 'bootstrap/dist/css/bootstrap.css';
+import 'jquery';
+import 'bootstrap/dist/js/bootstrap';
 import './styles/styles.scss';
 require('./favicon.ico');
 
