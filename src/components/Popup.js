@@ -24,8 +24,8 @@ class Popup extends Component {
     e.preventDefault();
     const {email} = this.state;
     const newslettersRef = firebase.database().ref('newsletters');
-    const emailInfo = {email};
-    newslettersRef.push(emailInfo);
+    const newChildRef = newslettersRef.push();
+    newChildRef.set(email);
     $('#popupModal').modal('toggle');
   };
 

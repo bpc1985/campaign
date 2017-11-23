@@ -4,6 +4,7 @@ import { withRouter } from 'react-router';
 import firebase from '../firebase';
 
 const initialState = {
+  newsletters: false,
   name: '',
   email: '',
   phone: ''
@@ -25,6 +26,10 @@ class ContactForm extends Component {
     this.props.history.push('/thankyou');
   }
 
+  handleCheckbox = () => {
+    this.setState({newsletters: !this.state.newsletters});
+  }
+
   handleChange = (e) => {
     this.setState({
       [e.target.name]: e.target.value
@@ -33,13 +38,18 @@ class ContactForm extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    const {name, email, phone} = this.state;
+    const {name, email, phone, newsletters} = this.state;
     const {sorting, service, platform} = this.props.data;
     const contactsRef = firebase.database().ref('contacts');
     const userInfo = {
-      name, email, phone, sorting, service, platform
+      name, email, phone, sorting, service, platform, newsletters
     };
     contactsRef.push(userInfo);
+    if (newsletters) {
+      const newslettersRef = firebase.database().ref('newsletters');
+      const newChildRef = newslettersRef.push();
+      newChildRef.set(email);
+    }
     this.clearContactForm();
   };
 
@@ -77,7 +87,12 @@ class ContactForm extends Component {
                         value={this.state.phone} />
                     </div>
                     <div className="text-field">
-                      <input type="checkbox" name="checkbox" id="cb" />
+                      <input
+                        id="cb"
+                        type="checkbox"
+                        name="newsletters"
+                        onChange={this.handleCheckbox}
+                        checked={this.state.newsletters} />
                       <label id="cb1" htmlFor="cb">Kyllä, haluan vastaanottaa sähköpostiini TietoLepän ajoittain vaihtuvia tarjouksia ja vinkkejä uutiskirjeen muodossa</label>
                     </div>
                     <input type="submit" value="Lähetä" />
