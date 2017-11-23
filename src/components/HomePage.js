@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import $ from 'jquery';
+// import $ from 'jquery';
 import Header from './Header';
 import Game from './Game';
 import ContactForm from './ContactForm';
@@ -11,30 +11,37 @@ class HomePage extends Component {
     super();
     this.state = {
       showContactForm: false,
-      popupShowed: false
+      popupShowed: false,
+      data: {
+        sorting: null,
+        service: null,
+        platform: null
+      }
     };
   }
 
-  checkToShowContactForm = () => {
+  checkToShowContactForm = (choice) => {
+    const {sorting, service, platform} = choice;
     this.setState({
-      showContactForm: true
+      showContactForm: true,
+      data: { sorting, service, platform }
     });
   }
 
   handleOnMouseLeave = () => {
-    $('#popupModal').modal('show');
+    this.setState({popupShowed: true});
   }
 
   render() {
-    const {showContactForm} = this.state;
+    const {showContactForm, popupShowed} = this.state;
     return (
       <div
         onMouseLeave={this.handleOnMouseLeave}>
         <Header />
         <Game checkToShowContactForm={this.checkToShowContactForm} />
-        {showContactForm && <ContactForm />}
+        {showContactForm && <ContactForm data={this.state.data} />}
         <Footer />
-        <Popup />
+        {popupShowed && <Popup />}
       </div>
     );
   }

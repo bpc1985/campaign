@@ -1,8 +1,13 @@
 import React, {Component} from 'react';
+import $ from 'jquery';
 
 class Popup extends Component {
   constructor() {
     super();
+  }
+
+  componentDidMount() {
+    $('#popupModal').modal('show');
   }
 
   render() {

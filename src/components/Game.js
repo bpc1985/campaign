@@ -24,8 +24,8 @@ class Game extends Component {
 
   componentDidMount() {
     //Shows next popup:
-    $('.gamebtn, #apple, #windows, #other').click(() => {
-      chosendevice = this.id;
+    $('.gamebtn, #apple, #windows, #other').click(event => {
+      chosendevice = event.target.id;
       if (n >= 3) {
         $(popup + n).show();
         $(quest + n).hide();
@@ -88,7 +88,7 @@ class Game extends Component {
       $('.popupmb').css({"height":"37em"});
       $('.more-button:last').css({"height":"100px", "bottom":"-50px"});
       $('#toformBtn').click(() => {
-        this.props.checkToShowContactForm();
+        this.props.checkToShowContactForm({sorting, service, platform});
         $('html, body').animate({scrollTop: $("#form").offset().top}, 400);
       });
     };
@@ -107,8 +107,8 @@ class Game extends Component {
       interestInService();
     });
 
-    $('#btnClick1, #btnClick2, #btnClick3').click(() => {
-      const a = this.id;
+    $('#btnClick1, #btnClick2, #btnClick3').click(event => {
+      const a = event.target.id;
       if(a == 'btnClick1'){
         sorting = 1;
       }
@@ -118,13 +118,12 @@ class Game extends Component {
       else {
         sorting = 5;
       }
-      console.log('sorting: ', sorting);
     });
 
 
     const interestInService = () => {
-      $('#btnClick4, #btnClick5, #btnClick6, #btnClick7').click(() => {
-        const b = this.id;
+      $('#btnClick4, #btnClick5, #btnClick6, #btnClick7').click(event => {
+        const b = event.target.id;
         if (b == 'btnClick4') {
           service = "huolto";
         }
@@ -137,22 +136,20 @@ class Game extends Component {
         else {
           service = "kaikki";
         }
-        console.log('service: ', service);
       });
     };
 
-    $('#apple, #windows, #other').click(() => {
-      const c = this.id;
-      if (c == 'apple') {
+    $('#apple, #windows, #other').click(event => {
+      const c = event.target.id;
+      if (c === 'apple') {
         platform = "mac";
       }
-      else if (c == 'windows') {
+      else if (c === 'windows') {
         platform = "windows";
       }
       else {
         platform = "other";
       }
-      console.log('platform: ', platform);
     });
   }
 

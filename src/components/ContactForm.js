@@ -11,7 +11,8 @@ const initialState = {
 
 class ContactForm extends Component {
   static propTypes = {
-    history: PropTypes.object.isRequired
+    history: PropTypes.object.isRequired,
+    data: PropTypes.object.isRequired
   }
 
   constructor() {
@@ -32,11 +33,11 @@ class ContactForm extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
+    const {name, email, phone} = this.state;
+    const {sorting, service, platform} = this.props.data;
     const contactsRef = firebase.database().ref('contacts');
     const userInfo = {
-      name: this.state.name,
-      email: this.state.email,
-      phone: this.state.phone
+      name, email, phone, sorting, service, platform
     };
     contactsRef.push(userInfo);
     this.clearContactForm();
