@@ -99,7 +99,7 @@ class ContactForm extends Component {
   };
 
   errorClass(error) {
-    return( error.length === 0 ? {} : {borderColor: 'red'});
+    return( error.length === 0 ? {} : {borderColor: '#f8c512'});
   }
 
   render() {
@@ -115,7 +115,7 @@ class ContactForm extends Component {
                       <input
                         type="text"
                         name="name"
-                        placeholder="Nimi"
+                        placeholder="Nimi*"
                         style={this.errorClass(this.state.formErrors.name)}
                         onChange={this.handleChange}
                         value={this.state.name} />
@@ -125,7 +125,7 @@ class ContactForm extends Component {
                       <input
                         type="text"
                         name="email"
-                        placeholder="Sähköposti"
+                        placeholder="Sähköposti*"
                         style={this.errorClass(this.state.formErrors.email)}
                         onChange={this.handleChange}
                         value={this.state.email} />
