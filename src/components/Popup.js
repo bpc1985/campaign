@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import $ from 'jquery';
 import firebase from '../firebase';
+import {isEmpty} from 'lodash';
 
 class Popup extends Component {
   constructor() {
@@ -23,10 +24,12 @@ class Popup extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     const {email} = this.state;
-    const newslettersRef = firebase.database().ref('newsletters');
-    const newChildRef = newslettersRef.push();
-    newChildRef.set(email);
-    $('#popupModal').modal('toggle');
+    if (!isEmpty(email)) {
+      const newslettersRef = firebase.database().ref('newsletters');
+      const newChildRef = newslettersRef.push();
+      newChildRef.set(email);
+      $('#popupModal').modal('toggle');
+    }
   };
 
   render() {
