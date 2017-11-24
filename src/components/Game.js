@@ -67,7 +67,7 @@ class Game extends Component {
       let $p2 = $div.find('p:last');
       if (chosendevice == "apple"){
         $h2.text("Apple tuotteet ovat todella varmoja!");
-        $p1.text("valitettavsti nekin voivat hajota.. Mutta ei hätää! Me TietoLepällä korjaamme myös apple koneita");
+        $p1.text("Valitettavasti nekin voivat hajota. Mutta ei hätää! Me TietoLepällä korjaamme myös apple koneita");
         $p2.text("Olet melkein valmis, täytä vain alla oleva lomake ja osallistu arvontaan!");
       }
       else if (chosendevice == "windows") {
