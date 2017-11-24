@@ -167,6 +167,7 @@ class Game extends Component {
             <p>
               <b>Osallistu skabaan ja meidän toimistoakin koristava hieno JBL Charge 2 kaiutin voi olla sinun!</b>
             </p>
+            <img src="images/jbl.png" style={{width: '80%', marginTop: '45px'}}/>
             <hr />
           </div>
         </div>

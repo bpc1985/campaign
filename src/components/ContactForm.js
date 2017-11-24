@@ -93,7 +93,9 @@ class ContactForm extends Component {
                         name="newsletters"
                         onChange={this.handleCheckbox}
                         checked={this.state.newsletters} />
-                      <label id="cb1" htmlFor="cb">Kyllä, haluan vastaanottaa sähköpostiini TietoLepän ajoittain vaihtuvia tarjouksia ja vinkkejä uutiskirjeen muodossa</label>
+                      <label id="cb1" htmlFor="cb">
+                        Kyllä, haluan vastaanottaa sähköpostiini TietoLepän ajoittain vaihtuvia tarjouksia ja vinkkejä uutiskirjeen muodossa. Tilaamalla uutiskirjeen, saan myös -15% alennuksen valitsemastani palvelusta.
+                      </label>
                     </div>
                     <input type="submit" value="Lähetä" />
                   </form>

@@ -21,7 +21,7 @@ const Header = () => {
 
           <div className="row">
             <div className="center-text col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-12">
-              <h1>Voihan pojat!</h1>
+              <h1>VOIHAN POJAT!</h1>
               <p>
                 Lue miten IT-tiimillemme kävi ja osallistu huisin hauskan tietokoneen korjaus -seikkailun kautta JBL Charge 2 kaiuttimen arvontaan!
               </p>
