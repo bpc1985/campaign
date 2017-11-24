@@ -79,22 +79,46 @@ class ContactForm extends Component {
     });
   }
 
+  checkExistEmail(email) {
+    const contactsRef = firebase.database().ref('contacts');
+    return contactsRef.once('value').then(snapshot => {
+      let isExisted = false;
+      snapshot.forEach(childSnapshot => {
+        const childData = childSnapshot.val();
+        if (childData.email === email) {
+          isExisted = true;
+          let fieldValidationErrors = this.state.formErrors;
+          fieldValidationErrors.email = 'Valitettavasti ette voi osallistua arvontaan kahdesti';
+          this.setState({
+            formErrors: fieldValidationErrors,
+            emailValid: false
+          }, this.validateForm);
+        }
+      });
+      return isExisted;
+    });
+  }
+
   handleSubmit = (e) => {
     e.preventDefault();
     if (this.state.formValid) {
-      const {name, email, phone, newsletters} = this.state;
-      const {sorting, service, platform} = this.props.data;
-      const contactsRef = firebase.database().ref('contacts');
-      const userInfo = {
-        name, email, phone, sorting, service, platform, newsletters
-      };
-      contactsRef.push(userInfo);
-      if (newsletters) {
-        const newslettersRef = firebase.database().ref('newsletters');
-        const newChildRef = newslettersRef.push();
-        newChildRef.set(email);
-      }
-      this.clearContactForm();
+      this.checkExistEmail(this.state.email).then(isExisted => {
+        if (!isExisted) {
+          const {name, email, phone, newsletters} = this.state;
+          const {sorting, service, platform} = this.props.data;
+          const contactsRef = firebase.database().ref('contacts');
+          const userInfo = {
+            name, email, phone, sorting, service, platform, newsletters
+          };
+          contactsRef.push(userInfo);
+          if (newsletters) {
+            const newslettersRef = firebase.database().ref('newsletters');
+            const newChildRef = newslettersRef.push();
+            newChildRef.set(email);
+          }
+          this.clearContactForm();
+        }
+      });
     }
   };
 

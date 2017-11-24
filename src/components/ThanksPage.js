@@ -16,7 +16,7 @@ const ThanksPage = () => {
                     </a>
                   </p>
                   <p>
-                    <a className="icon-link white" href="https://campaign-fc7cc.firebaseapp.com">
+                    <a className="icon-link white" href="http://kampanja.tietoleppa.fi/">
                       <i className="fa fa-chevron-left" aria-hidden="true" />&nbsp;&nbsp;Takaisin kampanjaan
                     </a>
                   </p>
