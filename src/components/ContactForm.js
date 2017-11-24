@@ -2,12 +2,21 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router';
 import firebase from '../firebase';
+import {FieldError} from './FieldError';
 
 const initialState = {
   newsletters: false,
   name: '',
   email: '',
-  phone: ''
+  phone: '',
+  formErrors: {
+    name: '',
+    email: '',
+    phone: ''
+  },
+  nameValid: false,
+  emailValid: false,
+  formValid: false
 };
 
 class ContactForm extends Component {
@@ -31,27 +40,67 @@ class ContactForm extends Component {
   }
 
   handleChange = (e) => {
-    this.setState({
-      [e.target.name]: e.target.value
-    });
+    const {name, value} = e.target;
+    this.setState(
+      {[name]: value},
+      () => {this.validateField(name, value);}
+    );
   };
+
+  validateField(fieldName, value) {
+    let fieldValidationErrors = this.state.formErrors;
+    let nameValid = this.state.nameValid;
+    let emailValid = this.state.emailValid;
+
+    switch(fieldName) {
+      case 'name':
+        nameValid = value.length > 0;
+        fieldValidationErrors.name = nameValid ? '': 'Tarkista että "Nimi" kenttä on täytetty';
+        break;
+      case 'email':
+        emailValid = value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
+        fieldValidationErrors.email = emailValid ? '' : 'Tarkista sähköpostiosoitteen muoto';
+        break;
+      default:
+        break;
+    }
+
+    this.setState({
+      formErrors: fieldValidationErrors,
+      nameValid: nameValid,
+      emailValid: emailValid
+    }, this.validateForm);
+  }
+
+  validateForm() {
+    const {nameValid, emailValid} = this.state;
+    this.setState({
+      formValid: nameValid && emailValid
+    });
+  }
 
   handleSubmit = (e) => {
     e.preventDefault();
-    const {name, email, phone, newsletters} = this.state;
-    const {sorting, service, platform} = this.props.data;
-    const contactsRef = firebase.database().ref('contacts');
-    const userInfo = {
-      name, email, phone, sorting, service, platform, newsletters
-    };
-    contactsRef.push(userInfo);
-    if (newsletters) {
-      const newslettersRef = firebase.database().ref('newsletters');
-      const newChildRef = newslettersRef.push();
-      newChildRef.set(email);
+    if (this.state.formValid) {
+      const {name, email, phone, newsletters} = this.state;
+      const {sorting, service, platform} = this.props.data;
+      const contactsRef = firebase.database().ref('contacts');
+      const userInfo = {
+        name, email, phone, sorting, service, platform, newsletters
+      };
+      contactsRef.push(userInfo);
+      if (newsletters) {
+        const newslettersRef = firebase.database().ref('newsletters');
+        const newChildRef = newslettersRef.push();
+        newChildRef.set(email);
+      }
+      this.clearContactForm();
     }
-    this.clearContactForm();
   };
+
+  errorClass(error) {
+    return( error.length === 0 ? {} : {borderColor: 'red'});
+  }
 
   render() {
     return (
@@ -67,16 +116,20 @@ class ContactForm extends Component {
                         type="text"
                         name="name"
                         placeholder="Nimi"
+                        style={this.errorClass(this.state.formErrors.name)}
                         onChange={this.handleChange}
                         value={this.state.name} />
+                      {<FieldError id={'nameError'} error={this.state.formErrors.name} />}
                     </div>
                     <div className="text-field">
                       <input
                         type="text"
                         name="email"
                         placeholder="Sähköposti"
+                        style={this.errorClass(this.state.formErrors.email)}
                         onChange={this.handleChange}
                         value={this.state.email} />
+                      <FieldError id={'emailError'} error={this.state.formErrors.email} />
                     </div>
                     <div className="text-field">
                       <input
